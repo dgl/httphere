@@ -24,7 +24,7 @@ directory.
 
 Some of these builds may not work for various reasons (e.g. go statically links
 on OpenBSD, this will only work for a specific version because OpenBSD does not
-guarantee compatibility between versions.)
+guarantee compatibility between versions).
 
 
 Why?
@@ -41,9 +41,10 @@ So this is a very simple go program.
 Building
 ========
 
-Install go: http://golang.org/doc/install
+Install go, if you haven't, see http://golang.org/doc/install
+
 Then:
 
-   go build -ldflags -s httphere.go
+    go build -ldflags -s httphere.go
 
-Using -ldflags -s cuts the executable size in half.
+(Using -ldflags -s cuts the executable size in half.)
