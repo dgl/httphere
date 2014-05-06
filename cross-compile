@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+# Hacky script to cross compile to various architectures.
+
+# http://dave.cheney.net/2012/09/08/an-introduction-to-cross-compilation-with-go
+my $go_cr = "$ENV{HOME}/go/golang-crosscompile/crosscompile.bash";
+
+# Go compiler name to uname -sm mapping.
+my %arch = (
+  "darwin-386" => "darwin-i386",
+  "darwin-amd64" => "darwin-x86_64",
+  "freebsd-386" => "freebsd-i386",
+  "freebsd-amd64" => "freebsd-amd64",
+  "linux-386" => "linux-i686",
+  "linux-amd64" => "linux-x86_64",
+  "linux-arm" => "linux-arm",
+  "openbsd-386" => "openbsd-i386",
+  "openbsd-amd64" => "openbsd-amd64",
+  "netbsd-386" => "netbsd-i386",
+  "netbsd-amd64" => "netbsd-amd64",
+  # No idea if these will even work
+  "windows-386" => "windows-i586",
+  "windows-amd64" => "windows-amd64",
+);
+
+unlink "httphere";
+for(keys %arch) {
+  system "bash -c 'source $go_cr; go-$_ build -ldflags -s httphere.go'";
+  mkdir $arch{$_};
+  rename "httphere", "$arch{$_}/httphere" or 
+    rename "httphere.exe", "$arch{$_}/httphere.exe" or
+      warn "$_: no build product\n";
+}

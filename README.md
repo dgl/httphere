@@ -18,9 +18,14 @@ If you trust me (and I have a build for your system):
     chmod +x httphere
     ./httphere
 
-(This will serve the current directory, doing this in your home directory may be
+This will serve the current directory, doing this in your home directory may be
 a bad idea. Better to store it in your ~/bin, then run it in a specific
-directory.)
+directory.
+
+Some of these builds may not work for various reasons (e.g. go statically links
+on OpenBSD, this will only work for a specific version because OpenBSD does not
+guarantee compatibility between versions.)
+
 
 Why?
 ====
@@ -35,6 +40,9 @@ So this is a very simple go program.
 
 Building
 ========
+
+Install go: http://golang.org/doc/install
+Then:
 
    go build -ldflags -s httphere.go
 
