@@ -19,7 +19,8 @@ If you trust me (and I have a build for your system):
     ./httphere
 
 (This will serve the current directory, doing this in your home directory may be
-a bad idea. Better to store it in your ~/bin)
+a bad idea. Better to store it in your ~/bin, then run it in a specific
+directory.)
 
 Why?
 ====
