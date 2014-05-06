@@ -10,7 +10,6 @@ import (
 	"net"
 	"net/http"
 	"os"
-	"os/user"
 )
 
 var (
@@ -21,11 +20,7 @@ var (
 
 func init() {
 	var default_port string
-	u, err := user.Current()
-	if err != nil {
-		log.Fatal("Cannot determine uid: ", err)
-	}
-	if u.Uid == "0" {
+	if os.Getuid() == 0 {
 		default_port = ":http"
 	} else {
 		default_port = ":8080" // http-alt, but not all systems know this
